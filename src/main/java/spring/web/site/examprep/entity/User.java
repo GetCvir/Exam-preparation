@@ -29,12 +29,19 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private Status status;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = Role.class)
+    @OneToOne(cascade = {CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH},
+            targetEntity = Role.class)
     @JoinColumn(name = "role_id")
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
-    @OneToMany(cascade = CascadeType.ALL,
+    @OneToMany(cascade = {CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH},
                mappedBy = "user",
                fetch = FetchType.EAGER)
     private List<Card> cards;
@@ -43,7 +50,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + login + '\'' +
+                ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", status=" + status +
                 ", role=" + role +

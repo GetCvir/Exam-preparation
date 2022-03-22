@@ -6,9 +6,6 @@ import spring.web.site.examprep.dao.RoleDAO;
 import spring.web.site.examprep.dao.UserDAO;
 import spring.web.site.examprep.entity.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class UserServiceImpl implements UserService{
     private final UserDAO userDAO;
@@ -40,4 +37,24 @@ public class UserServiceImpl implements UserService{
 
         System.out.println(user);
     }
+
+    @Override
+    public User findUserByLogin(String login) {
+        return userDAO.findUserByLogin(login);
+    }
+
+//    @Override
+//    public void addCard(Card card, Authentication authentication) {
+//        User user = getUser(authentication);
+//        card.setUser(user);
+//
+//
+//        userDAO.saveAndFlush(user);
+//    }
+//
+//    public User getUser(Authentication authentication){
+//        return findUserByLogin(
+//                authentication.getName()).orElseThrow(
+//                () ->new UsernameNotFoundException("User does not exist."));
+//    }
 }

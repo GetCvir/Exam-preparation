@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<p><a th:href="@{/exam-card/add-card}">Create question</a></p>
+
+<div th:switch="${cards}">
+    <h2 th:case="null">No questions found!</h2>
+    <div th:case="*">
+        <h2>Cards</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Operations</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="card : ${cards}">
+                <td th:text="${card.getQuestion()}"></td>
+<!--                <td th:text="${user.firstName}"></td>-->
+<!--                <td th:text="${user.lastName}"></td>-->
+<!--                <td><a th:href="@{user-update/{id}(id=${user.id})}">Edit</a></td>-->
+                <td><a th:href="@{/exam-card/delete-card/{id}(id=${card.getQuestionId()})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
 
 </body>
 </html>

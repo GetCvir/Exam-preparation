@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/exam-card/save-card}" th:object="${card}">
+    <div>
+        <label for="question">Question</label>
+        <input type="text" th:field="*{question}" id="question"/>
+
+        <br>
+
+        <label for="answer">Answer</label>
+        <input type="text" th:field="*{answer}" id="answer"/>
+
+        <br>
+
+        <input type="submit" value="Create"/>
+    </div>
+
+</form>
+
+</body>
+</html>

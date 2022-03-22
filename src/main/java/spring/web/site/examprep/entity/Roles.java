@@ -9,11 +9,12 @@ public enum Roles {
     USER (Set.of(Permissions.CREATE,
             Permissions.READ,
             Permissions.UPDATE,
-            Permissions.USER_DELETE)),
+            Permissions.DELETE_CARD)),
     ADMIN (Set.of(Permissions.CREATE,
             Permissions.READ,
             Permissions.UPDATE,
-            Permissions.ADMIN_DELETE));
+            Permissions.DELETE_CARD,
+            Permissions.DELETE_USER));
 
         private final Set<Permissions> permissions;
 

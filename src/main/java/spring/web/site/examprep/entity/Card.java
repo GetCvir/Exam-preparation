@@ -8,6 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "cards")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Card {
@@ -23,7 +24,10 @@ public class Card {
     @Column(name = "answer")
     private String answer;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH})
     @JoinColumn(name = "user_id")
     private User user;
 

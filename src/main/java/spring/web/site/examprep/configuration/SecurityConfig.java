@@ -17,7 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
-@Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -33,38 +32,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
-//.antMatchers("/exam-card/registration").access("true")
+
+    //.antMatchers("/exam-card/registration").access("true")
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                .csrf().disable();
+        http
                 .authorizeRequests()
-                .antMatchers("/exam-card/registration").permitAll()
-                .antMatchers("/exam-card").permitAll()
-                    .anyRequest()
-                    .authenticated()
-                .and()
-                    .formLogin()
-                    //.loginPage("/exam-card/sign-in").permitAll()
-                    .defaultSuccessUrl("/exam-card/questions")
-                .and()
-                    .logout()
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/exam-card/sign-in", "POST"))
-                    .invalidateHttpSession(true)
-                    .clearAuthentication(true)
-                    .deleteCookies("JSESSIONID")
-                    .logoutSuccessUrl("/exam-card/sign-in")
-                ;
+                .anyRequest()
+                .authenticated();
+        http
+                .formLogin()
+                .loginPage("/exam-card/sign").permitAll()
+                .loginProcessingUrl("/exam-card/sign")
+                .usernameParameter("username")
+                .passwordParameter("password");
+                //.defaultSuccessUrl("/exam-card/questions");
+
     }
 
     @Bean
-    protected PasswordEncoder passwordEncoder(){
+    protected PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
 
     @Bean
-    protected DaoAuthenticationProvider daoAuthenticationProvider(){
-        DaoAuthenticationProvider daoAuthenticationProvider=new DaoAuthenticationProvider();
+    protected DaoAuthenticationProvider daoAuthenticationProvider() {
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(userDetailsService);
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         return daoAuthenticationProvider;

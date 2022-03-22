@@ -4,8 +4,8 @@ public enum Permissions {
     CREATE("create"),
     READ("read"),
     UPDATE("update"),
-    USER_DELETE("user_delete"),
-    ADMIN_DELETE("admin_delete");
+    DELETE_CARD("delete_card"),
+    DELETE_USER("delete_user");
 
     private final String permission;
 
