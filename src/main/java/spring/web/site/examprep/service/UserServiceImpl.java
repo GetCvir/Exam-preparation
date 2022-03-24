@@ -42,15 +42,7 @@ public class UserServiceImpl implements UserService{
     public User findUserByLogin(String login) {
         return userDAO.findUserByLogin(login);
     }
-
-//    @Override
-//    public void addCard(Card card, Authentication authentication) {
-//        User user = getUser(authentication);
-//        card.setUser(user);
-//
-//
-//        userDAO.saveAndFlush(user);
-//    }
+    
 //
 //    public User getUser(Authentication authentication){
 //        return findUserByLogin(
