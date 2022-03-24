@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+<<<<<<< Updated upstream
                 .antMatchers("/exam-card/registration").permitAll()
                 .antMatchers("/exam-card").permitAll()
                     .anyRequest()
@@ -55,6 +56,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .deleteCookies("JSESSIONID")
                     .logoutSuccessUrl("/exam-card/sign-in")
                 ;
+=======
+                .anyRequest()
+                .authenticated();
+        http
+                .formLogin()
+                //.loginPage("/exam-card/sign").permitAll()
+                //.loginProcessingUrl("/exam-card/sign")
+                //.usernameParameter("username")
+                //.passwordParameter("password")
+                .defaultSuccessUrl("/exam-card/questions");
+        http
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/exam-card/logout", "POST"))
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/exam-card/login");
+
+>>>>>>> Stashed changes
     }
 
     @Bean

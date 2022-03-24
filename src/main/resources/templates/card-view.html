@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:action="@{/exam-card/update-card/{id}(id=${card.getQuestionId()})}" th:method="GET">
+    <button type="submit">Update</button>
+</form>
+<form th:action="@{/exam-card/delete-card/{id}(id=${card.getQuestionId()})}" th:method="GET">
+    <button type="submit">Delete</button>
+</form>
+
+<form th:method="GET" th:action="@{/exam-card/cards}" th:object="${card}">
+    <div>
+        <label for="question">Question</label>
+        <input type="text" th:field="*{question}" id="question" readonly/>
+
+        <br>
+
+        <label for="answer">Answer</label>
+        <input type="text" th:field="*{answer}" id="answer" readonly/>
+
+        <label for="questionId"></label>
+        <input type="hidden" th:field="*{questionId}" id="questionId"/>
+
+        <label for="user"></label>
+        <input type="hidden" th:field="*{user}" id="user"/>
+
+        <br>
+
+        <input type="submit" value="Cards"/>
+    </div>
+
+</form>
+
+</body>
+</html>

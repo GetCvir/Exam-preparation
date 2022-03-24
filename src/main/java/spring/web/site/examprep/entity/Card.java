@@ -23,7 +23,13 @@ public class Card {
     @Column(name = "answer")
     private String answer;
 
+<<<<<<< Updated upstream
     @ManyToOne(cascade = CascadeType.ALL)
+=======
+    @ManyToOne(cascade = {CascadeType.PERSIST,
+            CascadeType.DETACH,
+            CascadeType.REFRESH})
+>>>>>>> Stashed changes
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -32,6 +38,6 @@ public class Card {
         return "Card{" +
                 "questionId=" + questionId +
                 ", question='" + question + '\'' +
-                ", answer='" + answer;
+                ", answer='" + answer + "}";
     }
 }

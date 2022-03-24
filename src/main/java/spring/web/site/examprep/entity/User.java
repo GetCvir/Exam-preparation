@@ -29,12 +29,25 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private Status status;
 
+<<<<<<< Updated upstream
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Role.class)
+=======
+    @OneToOne(cascade = {CascadeType.PERSIST,
+            CascadeType.DETACH,
+            CascadeType.REFRESH},
+            targetEntity = Role.class)
+>>>>>>> Stashed changes
     @JoinColumn(name = "role_id")
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
+<<<<<<< Updated upstream
     @OneToMany(cascade = CascadeType.ALL,
+=======
+    @OneToMany(cascade = {CascadeType.PERSIST,
+            CascadeType.DETACH,
+            CascadeType.REFRESH},
+>>>>>>> Stashed changes
                mappedBy = "user",
                fetch = FetchType.EAGER)
     private List<Card> cards;

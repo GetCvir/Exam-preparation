@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<<<<<<< Updated upstream:src/main/resources/templates/questions.html
+=======
+<p><a th:href="@{/exam-card/add-card}">Create question</a></p>
+
+<div th:switch="${cards}">
+    <h2 th:case="null">No questions found!</h2>
+    <div th:case="*">
+        <h2>Cards</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Operations</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="card : ${cards}">
+<!--                <td th:text="${card.getQuestion()}"></td>-->
+                <td><a th:href="@{/exam-card/card/{id}(id=${card.getQuestionId()})}" th:text="${card.getQuestion()}"/></td>
+                <td><a th:href="@{/exam-card/update-card/{id}(id=${card.getQuestionId()})}">Edit</a></td>
+                <td><a th:href="@{/exam-card/delete-card/{id}(id=${card.getQuestionId()})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+>>>>>>> Stashed changes:src/main/resources/templates/cards.html
+
+<form action="/exam-card/logout" method="POST">
+    <button type="submit">Logout</button>
+</form>
+
+</body>
+</html>
